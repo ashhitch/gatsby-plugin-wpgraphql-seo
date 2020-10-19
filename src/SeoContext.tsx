@@ -1,86 +1,85 @@
-import  { createContext } from 'react';
+import { createContext } from 'react';
 
 interface IPost {
-  title: string;
-  schemaType: string;
-  metaRobotsNoindex: boolean;
-  metaDesc: string;
+    title: string;
+    schemaType: string;
+    metaRobotsNoindex: boolean;
+    metaDesc: string;
 }
 
 interface IContentTypes {
-  [x: string]: IPost;
-
+    [x: string]: IPost;
 }
 
 interface IWebmaster {
-  googleVerify: string;
-  yandexVerify: string;
-  msVerify: string;
-  baiduVerify: string;
+    googleVerify: string;
+    yandexVerify: string;
+    msVerify: string;
+    baiduVerify: string;
 }
 
 interface IFixed {
-  src: string;
-  width: number;
-  height: number;
+    src: string;
+    width: number;
+    height: number;
 }
 
 interface IChildImageSharp {
-  fixed: IFixed;
+    fixed: IFixed;
 }
 
 interface ILocalFile {
-  childImageSharp: IChildImageSharp;
+    childImageSharp: IChildImageSharp;
 }
 
 interface ILogo {
-  mediaItemUrl: string;
-  altText: string;
-  localFile: ILocalFile;
+    mediaItemUrl: string;
+    altText: string;
+    localFile: ILocalFile;
 }
 
 interface ISchema {
-  companyName: string;
-  personName: string;
-  companyOrPerson: string;
-  wordpressSiteName: string;
-  siteUrl: string;
-  siteName: string;
-  inLanguage: string;
-  logo: ILogo;
+    companyName: string;
+    personName: string;
+    companyOrPerson: string;
+    wordpressSiteName: string;
+    siteUrl: string;
+    siteName: string;
+    inLanguage: string;
+    logo: ILogo;
 }
 
 interface IDefaultImage {
-  mediaItemUrl: string;
+    mediaItemUrl: string;
 }
 
 interface IScocialAccount {
-  url?: string;
-  defaultImage?: IDefaultImage;
-  username?: string;
-  cardType?: string;
-  metaTag?: string;
+    url?: string;
+    defaultImage?: IDefaultImage;
+    username?: string;
+    cardType?: string;
+    metaTag?: string;
 }
 
 interface ISocial {
-  facebook: IScocialAccount;
-  instagram: IScocialAccount;
-  linkedIn: IScocialAccount;
-  mySpace: IScocialAccount;
-  pinterest: IScocialAccount;
-  twitter: IScocialAccount;
-  wikipedia: IScocialAccount;
-  youTube: IScocialAccount;
+    facebook: IScocialAccount;
+    instagram: IScocialAccount;
+    linkedIn: IScocialAccount;
+    mySpace: IScocialAccount;
+    pinterest: IScocialAccount;
+    twitter: IScocialAccount;
+    wikipedia: IScocialAccount;
+    youTube: IScocialAccount;
 }
 
 interface IGlobal {
-  contentTypes: IContentTypes;
-  webmaster: IWebmaster;
-  schema: ISchema;
-  social: ISocial;
+    contentTypes: IContentTypes;
+    webmaster: IWebmaster;
+    schema: ISchema;
+    social: ISocial;
 }
 interface ContextProps {
-  global: IGlobal;
+    global: IGlobal;
 }
 // Create a ui context
 const SEOContext = createContext<Partial<ContextProps>>({});
