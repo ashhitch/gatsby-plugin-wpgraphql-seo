@@ -31,6 +31,10 @@
     "name": "gatsby-plugin-wpgraphql-seo",
     "author": "Ash Hitchcock",
     "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "repository": "https://github.com/ashhitch/gatsby-plugin-wpgraphql-seo",
     "size-limit": [
         {
             "path": "dist/gatsby-plugin-wpgraphql-seo.cjs.production.min.js",
