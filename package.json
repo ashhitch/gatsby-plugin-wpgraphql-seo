@@ -1,75 +1,75 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "peerDependencies": {
-    "react": ">=16",
-    "react-helmet": "^6.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "name": "gatsby-plugin-wpgraphql-seo",
-  "author": "Ash Hitchcock",
-  "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/gatsby-plugin-wpgraphql-seo.cjs.production.min.js",
-      "limit": "10 KB"
+    "version": "0.1.1",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
     },
-    {
-      "path": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
-      "limit": "10 KB"
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test --passWithNoTests",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
+    },
+    "peerDependencies": {
+        "react": ">=16",
+        "react-helmet": "^6.1.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "tsdx lint"
+        }
+    },
+    "name": "gatsby-plugin-wpgraphql-seo",
+    "author": "Ash Hitchcock",
+    "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
+    "size-limit": [
+        {
+            "path": "dist/gatsby-plugin-wpgraphql-seo.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@size-limit/preset-small-lib": "^4.6.0",
+        "@types/react": "^16.9.53",
+        "@types/react-dom": "^16.9.8",
+        "@typescript-eslint/eslint-plugin": "^2.10.0",
+        "@typescript-eslint/parser": "^2.10.0",
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-config-airbnb-typescript": "^6.3.1",
+        "eslint-config-ashhitch": "0.0.1",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-plugin-html": "^6.0.0",
+        "eslint-plugin-import": "^2.19.1",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.17.0",
+        "eslint-plugin-react-hooks": "^2.3.0",
+        "husky": "^4.3.0",
+        "prettier": "^1.19.1",
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0",
+        "react-helmet": "^6.1.0",
+        "size-limit": "^4.6.0",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.0.3",
+        "typescript": "3.7.3"
+    },
+    "dependencies": {
+        "@types/react-helmet": "^6.1.0"
     }
-  ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.6.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "@typescript-eslint/eslint-plugin": "^2.10.0",
-    "@typescript-eslint/parser": "^2.10.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-airbnb-typescript": "^6.3.1",
-    "eslint-config-ashhitch": "0.0.1",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^2.3.0",
-    "husky": "^4.3.0",
-    "prettier": "^1.19.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-helmet": "^6.1.0",
-    "size-limit": "^4.6.0",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.0.3",
-    "typescript": "3.7.3"
-  },
-  "dependencies": {
-    "@types/react-helmet": "^6.1.0"
-  }
 }
