@@ -4,18 +4,17 @@
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "files": [
-        "dist",
-        "src"
+        "dist"
     ],
     "engines": {
         "node": ">=10"
     },
     "scripts": {
-        "start": "./node_modules/.bin/tsdx watch",
-        "build": "./node_modules/.bin/tsdx build",
-        "test": "./node_modules/.bin/tsdx test --passWithNoTests",
-        "lint": "./node_modules/.bin/tsdx lint",
-        "prepare": "./node_modules/.bin/tsdx build",
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test --passWithNoTests",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
         "size": "size-limit",
         "analyze": "size-limit --why"
     },
@@ -25,7 +24,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "./node_modules/.bin/tsdx lint"
+            "pre-commit": "tsdx lint"
         }
     },
     "name": "gatsby-plugin-wpgraphql-seo",
@@ -33,9 +32,12 @@
     "description": "A SEO component that brings data from Yoast in your Gatsby App vi WpGraphQl.",
     "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+        "registry": "https://registry.npmjs.org/"
     },
-    "repository": "https://github.com/ashhitch/gatsby-plugin-wpgraphql-seo",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ashhitch/gatsby-plugin-wpgraphql-seo"
+    },
     "size-limit": [
         {
             "path": "dist/gatsby-plugin-wpgraphql-seo.cjs.production.min.js",

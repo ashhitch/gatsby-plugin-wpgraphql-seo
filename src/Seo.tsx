@@ -181,9 +181,10 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, uri }) => {
         pageSchema.dateModified = post.modified;
     }
 
+    const graph = [orgSchema, websiteSchema, pageSchema].filter(a => !!a);
     const schemaObj = {
         '@context': 'https://schema.org',
-        '@graph': [orgSchema, websiteSchema, pageSchema],
+        '@graph': graph,
     };
 
     return (
