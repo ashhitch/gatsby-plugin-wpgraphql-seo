@@ -1,1 +1,3 @@
 # Gatsby SEO For WpGraphQL and Yoast
+
+> Details coming soon...
