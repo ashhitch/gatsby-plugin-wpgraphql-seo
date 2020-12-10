@@ -35,6 +35,9 @@ interface IPageSchemaItems {
 const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     const { seo } = post;
 
+    // If manually passed or try get from post data
+    const fullSchema = postSchema || JSON.parse(seo?.schema?.raw);
+
     const { global } = useContext(SEOContext);
     const inLanguage = global?.schema?.inLanguage;
 
@@ -134,7 +137,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 .concat(meta, verification)}
             encodeSpecialCharacters={false}
         >
-            {postSchema && <script type="application/ld+json">{JSON.stringify({ ...postSchema }, null, 2)}</script>}
+            {postSchema && <script type="application/ld+json">{JSON.stringify({ ...fullSchema }, null, 2)}</script>}
         </Helmet>
     );
 };
