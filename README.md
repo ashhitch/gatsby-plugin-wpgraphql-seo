@@ -1,5 +1,7 @@
 # Gatsby SEO For WpGraphQL and Yoast
 
+![npm](https://img.shields.io/npm/v/gatsby-plugin-wpgraphql-seo)
+
 Takes data from [WpGraphQL](https://www.wpgraphql.com/) and [WPGraphQl Yoast SEO](https://github.com/ashhitch/wp-graphql-yoast-seo) and provided you with Meta Tags and JSON+LD Schema in Gatsby.
 
 ## Basic Setup
@@ -8,11 +10,14 @@ Takes data from [WpGraphQL](https://www.wpgraphql.com/) and [WPGraphQl Yoast SEO
 
 Yarn or NPM install
 
-> yarn add gatsby-plugin-wpgraphql-seo
-
+```
+yarn add gatsby-plugin-wpgraphql-seo
+```
 or
 
-> npm install gatsby-plugin-wpgraphql-seo
+```
+npm install gatsby-plugin-wpgraphql-seo
+```
 
 ### Setup Gatsby
 
