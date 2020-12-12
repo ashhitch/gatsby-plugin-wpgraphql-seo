@@ -36,7 +36,13 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     const { seo } = post;
 
     // If manually passed or try get from post data
-    const fullSchema = postSchema || JSON.parse(seo?.schema?.raw);
+    let fullSchema;
+
+    if (postSchema) {
+        fullSchema = postSchema;
+    } else if (seo && seo?.schema?.raw) {
+        fullSchema = JSON.parse(seo.schema.raw);
+    }
 
     const { global } = useContext(SEOContext);
     const inLanguage = global?.schema?.inLanguage;

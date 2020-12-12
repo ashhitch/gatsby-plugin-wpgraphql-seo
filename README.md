@@ -13,6 +13,7 @@ Yarn or NPM install
 ```
 yarn add gatsby-plugin-wpgraphql-seo
 ```
+
 or
 
 ```
@@ -182,4 +183,4 @@ Additional props are provided for overrides and simpler pages:
 
 ```
 
-... More docs coming soon
+... More docs and info coming soon
