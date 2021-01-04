@@ -182,4 +182,27 @@ Additional props are provided for overrides and simpler pages:
 
 ```
 
+### Removing search action from schema.
+By default Yoast adds a search action to the schema if you want remove it you can add the following PHP to your functions.php file:
+
+```php
+<?php
+add_filter('wpseo_schema_website', 'XX_remove_schema_search');
+function XX_remove_schema_search($data)
+{
+  if ($data['potentialAction']) {
+    foreach ($data['potentialAction'] as $key => $value) {
+  
+      if ($value['@type'] && $value['@type'] == 'SearchAction') {
+        unset($data['potentialAction'][$key]);
+      }
+    }
+  }
+
+  return $data;
+}
+
+```
+
+
 ... More docs coming soon
