@@ -171,6 +171,51 @@ export const pageQuery = graphql`
 `;
 ```
 
+For archive pages
+
+```jsx
+
+import React from 'react';
+import { graphql } from 'gatsby';
+import Seo from 'gatsby-plugin-wpgraphql-seo';
+
+const Blog = ({ data }) => {
+    return (
+        <>
+            <Seo title="Blog Title" postSchema={data.wp.contentTypes.post.schema.raw} />
+            <p>Rest of page</p>
+        </>
+    );
+};
+
+export default Blog;
+
+export const pageQuery = graphql`
+      query GET_POSTS($ids: [String]) {
+      
+          wp {
+            seo {
+                contentTypes {
+                    post {
+                        schema {
+                            raw
+                        }
+                    }
+                }
+            }
+
+          }
+          allWpPost(filter: { id: { in: $ids } }) {
+            nodes {
+              ...
+            }
+          }
+           
+    }
+    `;
+
+```
+
 Additional props are provided for overrides and simpler pages:
 
 ```
