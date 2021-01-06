@@ -182,7 +182,7 @@ import Seo from 'gatsby-plugin-wpgraphql-seo';
 const Blog = ({ data }) => {
     return (
         <>
-            <Seo title="Blog Title" postSchema={data.wp.contentTypes.post.schema.raw} />
+            <Seo title="Blog Title" postSchema={JSON.parse(data.wp.contentTypes.post.schema.raw)} />
             <p>Rest of page</p>
         </>
     );
