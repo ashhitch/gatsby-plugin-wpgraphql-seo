@@ -87,6 +87,8 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     const metaTitle = title || seo.title;
     const metaDescription = seo?.metaDesc ? seo.metaDesc : '';
 
+    const robotsIndex = seo.metaRobotsNoindex ? 'noindex' : 'index';
+    const robotsFollow = seo.metaRobotsNofollow ? 'nofollow' : 'follow';
     return (
         <Helmet
             htmlAttributes={{
@@ -96,7 +98,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
             meta={[
                 {
                     name: `robots`,
-                    content: `max-snippet:-1, max-image-preview:large, max-video-preview:-1`,
+                    content: `max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${robotsIndex}, ${robotsFollow}`,
                 },
                 {
                     name: `description`,
