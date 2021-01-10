@@ -172,6 +172,52 @@ export const pageQuery = graphql`
 `;
 ```
 
+For archive pages
+
+```jsx
+import React from 'react';
+import { graphql } from 'gatsby';
+import Seo from 'gatsby-plugin-wpgraphql-seo';
+
+const Blog = ({ data }) => {
+    return (
+        <>
+            <Seo
+                title="Blog Title"
+                postSchema={JSON.parse(data.wp.contentTypes.post.schema.raw)}
+            />
+            <p>Rest of page</p>
+        </>
+    );
+};
+
+export default Blog;
+
+export const pageQuery = graphql`
+      query GET_POSTS($ids: [String]) {
+      
+          wp {
+            seo {
+                contentTypes {
+                    post {
+                        schema {
+                            raw
+                        }
+                    }
+                }
+            }
+
+          }
+          allWpPost(filter: { id: { in: $ids } }) {
+            nodes {
+              ...
+            }
+          }
+           
+    }
+    `;
+```
+
 Additional props are provided for overrides and simpler pages:
 
 ```
@@ -183,4 +229,27 @@ Additional props are provided for overrides and simpler pages:
 
 ```
 
-... More docs and info coming soon
+### Removing search action from schema.
+
+By default Yoast adds a search action to the schema if you want remove it you can add the following PHP to your functions.php file:
+
+```php
+<?php
+add_filter('wpseo_schema_website', 'XX_remove_schema_search');
+function XX_remove_schema_search($data)
+{
+  if ($data['potentialAction']) {
+    foreach ($data['potentialAction'] as $key => $value) {
+
+      if ($value['@type'] && $value['@type'] == 'SearchAction') {
+        unset($data['potentialAction'][$key]);
+      }
+    }
+  }
+
+  return $data;
+}
+
+```
+
+... More docs coming soon
