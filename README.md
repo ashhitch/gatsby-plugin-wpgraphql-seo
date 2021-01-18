@@ -184,7 +184,7 @@ const Blog = ({ data }) => {
         <>
             <Seo
                 title="Blog Title"
-                postSchema={JSON.parse(data.wp.contentTypes.post.schema.raw)}
+                postSchema={JSON.parse(data.wp.seo.contentTypes.post.schema.raw)}
             />
             <p>Rest of page</p>
         </>
