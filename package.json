@@ -30,6 +30,13 @@
     "name": "gatsby-plugin-wpgraphql-seo",
     "author": "Ash Hitchcock",
     "description": "A SEO component that brings data from Yoast in your Gatsby App with WpGraphQl.",
+    "keywords": [
+        "gatsby",
+        "gatsby-plugin",
+        "wordpress",
+        "wpgraphql",
+        "seo"
+    ],
     "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
