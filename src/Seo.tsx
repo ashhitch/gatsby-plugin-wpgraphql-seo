@@ -125,12 +125,12 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                     content: `website`,
                 },
                 {
-                    property: "og:image",
-                    content: seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl
+                    property: 'og:image',
+                    content: seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl,
                 },
                 {
-                    property: "og:image:alt",
-                    content: seo?.opengraphImage?.altText || social?.facebook?.defaultImage?.altText
+                    property: 'og:image:alt',
+                    content: seo?.opengraphImage?.altText || social?.facebook?.defaultImage?.altText,
                 },
                 {
                     name: `twitter:card`,
@@ -149,13 +149,13 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                     content: seo?.twitterDescription || metaDescription,
                 },
                 {
-                    name: "twitter:image",
-                    content: seo?.twitterImage?.sourceUrl
+                    name: 'twitter:image',
+                    content: seo?.twitterImage?.sourceUrl,
                 },
                 {
-                    name: "twitter:image:alt",
-                    content: seo?.twitterImage?.altText
-                }
+                    name: 'twitter:image:alt',
+                    content: seo?.twitterImage?.altText,
+                },
             ]
                 .filter(m => !!m.content)
                 .concat(meta, verification)}
