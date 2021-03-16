@@ -51,6 +51,7 @@ interface ISchema {
 
 interface IDefaultImage {
     mediaItemUrl: string;
+    altText: string;
 }
 
 interface IScocialAccount {
