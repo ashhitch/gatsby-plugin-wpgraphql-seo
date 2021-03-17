@@ -89,6 +89,9 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
 
     const robotsIndex = seo?.metaRobotsNoindex === 'noindex' ? 'noindex' : 'index';
     const robotsFollow = seo?.metaRobotsNofollow === 'nofollow' ? 'nofollow' : 'follow';
+
+    const getReadingTime = time => (time === 1 ? '1 minute' : `${time} minutes`);
+
     return (
         <Helmet
             htmlAttributes={{
@@ -155,6 +158,14 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 {
                     name: 'twitter:image:alt',
                     content: seo?.twitterImage?.altText,
+                },
+                {
+                    name: 'twitter:label1',
+                    content: seo?.readingTime ? 'Estimated reading time' : null,
+                },
+                {
+                    name: 'twitter:data1',
+                    content: seo?.readingTime ? getReadingTime(+seo.readingTime) : '',
                 },
             ]
                 .filter(m => !!m.content)
