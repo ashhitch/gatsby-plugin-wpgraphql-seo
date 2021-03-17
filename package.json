@@ -74,7 +74,6 @@
         "eslint-plugin-react": "^7.17.0",
         "eslint-plugin-react-hooks": "^2.3.0",
         "husky": "^4.3.0",
-        "gatsby": "^2.31.1",
         "prettier": "^1.19.1",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
