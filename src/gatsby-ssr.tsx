@@ -1,8 +1,14 @@
+import { PluginOptions, WrapRootElementNodeArgs } from 'gatsby';
 import { SEOProvider } from './seoProvider';
 
-export const wrapRootElement = ({ element }, pluginOptions) => {
+interface SeoPluginOptions extends PluginOptions {
+    key?: string;
+}
+
+export const wrapRootElement = ({ element }: WrapRootElementNodeArgs, pluginOptions: SeoPluginOptions) => {
     if (pluginOptions.rootQuery) {
-        return SEOProvider(element, pluginOptions);
+        const { key } = pluginOptions;
+        return SEOProvider(element, key);
     }
 
     return element;
