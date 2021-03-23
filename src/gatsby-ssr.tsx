@@ -3,6 +3,7 @@ import { SEOProvider } from './seoProvider';
 
 interface SeoPluginOptions extends PluginOptions {
     key?: string;
+    rootQuery?: string;
 }
 
 export const wrapRootElement = ({ element }: WrapRootElementNodeArgs, pluginOptions: SeoPluginOptions) => {

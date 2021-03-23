@@ -3,7 +3,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import SEOContext from './SeoContext';
 
-export const SEOProvider = (element, key: string) => {
+export const SEOProvider = (element, key) => {
     const {
         [key]: { seo },
     } = useStaticQuery(graphql`
