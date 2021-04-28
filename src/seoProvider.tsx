@@ -3,10 +3,8 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import SEOContext from './SeoContext';
 
-export const SEOProvider = (element, key) => {
-    const {
-        [key]: { seo },
-    } = useStaticQuery(graphql`
+export const SEOProvider = (element: any, key = 'wp') => {
+    const data = useStaticQuery(graphql`
         query SiteInfoQuery {
             wp {
                 seo {
@@ -79,6 +77,8 @@ export const SEOProvider = (element, key) => {
             }
         }
     `);
+
+    const seo = data?.[key]?.seo;
 
     return <SEOContext.Provider value={{ global: seo }}>{element}</SEOContext.Provider>;
 };
