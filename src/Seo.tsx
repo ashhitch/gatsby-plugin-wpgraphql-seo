@@ -121,7 +121,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 },
                 {
                     property: `og:locale`,
-                    content: `en_GB`,
+                    content: seo?.schema?.inLanguage ? seo.schema.inLanguage.replace('-', '_') : null,
                 },
                 {
                     property: `og:type`,
