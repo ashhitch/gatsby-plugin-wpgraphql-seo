@@ -172,7 +172,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 .concat(meta, verification)}
             encodeSpecialCharacters={false}
         >
-            {fullSchema && <script type="application/ld+json">{JSON.stringify({ ...fullSchema }, null, 2)}</script>}
+            {fullSchema && <script type="application/ld+json">{JSON.stringify({ ...fullSchema }, null, null)}</script>}
         </Helmet>
     );
 };
