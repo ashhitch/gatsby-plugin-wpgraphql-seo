@@ -94,6 +94,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     const getReadingTime = time => (time === 1 ? '1 minute' : `${time} minutes`);
 
     const ogImage = getSrc(seo?.opengraphImage?.localFile);
+    const twitterImage = getSrc(seo?.twitterImage?.localFile);
 
     return (
         <Helmet
@@ -156,7 +157,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 },
                 {
                     name: 'twitter:image',
-                    content: ogImage || seo?.twitterImage?.sourceUrl,
+                    content: twitterImage || seo?.twitterImage?.sourceUrl,
                 },
                 {
                     name: 'twitter:image:alt',
