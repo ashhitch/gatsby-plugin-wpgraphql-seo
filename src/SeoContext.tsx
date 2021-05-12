@@ -24,8 +24,16 @@ interface IFixed {
     height: number;
 }
 
+interface IGatsbyImageData {
+    layout: string;
+    images: any;
+    width: number;
+    height: number;
+}
+
 interface IChildImageSharp {
-    fixed: IFixed;
+    fixed?: IFixed;
+    gatsbyImageData?: IGatsbyImageData;
 }
 
 interface ILocalFile {
