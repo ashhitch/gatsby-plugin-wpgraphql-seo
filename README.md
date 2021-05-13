@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/gatsby-plugin-wpgraphql-seo)
 
-Takes data from [WpGraphQL](https://www.wpgraphql.com/) and [WPGraphQl Yoast SEO](https://github.com/ashhitch/wp-graphql-yoast-seo) and provided you with Meta Tags and JSON+LD Schema in Gatsby.
+Takes data from [WpGraphQL](https://www.wpgraphql.com/) and [WPGraphQl Yoast SEO](https://github.com/ashhitch/wp-graphql-yoast-seo) and provides you with Meta Tags and JSON+LD Schema in Gatsby.
 
 ## Basic Setup
 
