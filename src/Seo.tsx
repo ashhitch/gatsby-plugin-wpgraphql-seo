@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Helmet } from 'react-helmet';
+import { getSrc } from 'gatsby-plugin-image';
 
 import SEOContext from './SeoContext';
 
@@ -92,6 +93,9 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
 
     const getReadingTime = time => (time === 1 ? '1 minute' : `${time} minutes`);
 
+    const ogImage = getSrc(seo?.opengraphImage?.localFile);
+    const twitterImage = getSrc(seo?.twitterImage?.localFile);
+
     return (
         <Helmet
             htmlAttributes={{
@@ -129,7 +133,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 },
                 {
                     property: 'og:image',
-                    content: seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl,
+                    content: ogImage || seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl,
                 },
                 {
                     property: 'og:image:alt',
@@ -153,7 +157,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 },
                 {
                     name: 'twitter:image',
-                    content: seo?.twitterImage?.sourceUrl,
+                    content: twitterImage || seo?.twitterImage?.sourceUrl,
                 },
                 {
                     name: 'twitter:image:alt',

@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface IPost {
     title: string;
@@ -23,9 +24,9 @@ interface IFixed {
     width: number;
     height: number;
 }
-
 interface IChildImageSharp {
-    fixed: IFixed;
+    fixed?: IFixed;
+    gatsbyImageData?: IGatsbyImageData;
 }
 
 interface ILocalFile {
