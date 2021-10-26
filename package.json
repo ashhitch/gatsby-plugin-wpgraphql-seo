@@ -7,7 +7,7 @@
         "dist"
     ],
     "engines": {
-        "node": ">=10"
+        "node": ">=14.15.0"
     },
     "scripts": {
         "start": "tsdx watch",
@@ -20,7 +20,8 @@
     },
     "peerDependencies": {
         "react": ">=16",
-        "react-helmet": "^6.1.0"
+        "react-helmet": "^6.1.0",
+        "gatsby": "^3.0.0 || ^4.0.0"
     },
     "husky": {
         "hooks": {
