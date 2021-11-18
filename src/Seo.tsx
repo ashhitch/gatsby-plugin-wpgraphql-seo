@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { getSrc } from 'gatsby-plugin-image';
-
+import replaceAll from 'just-replace-all';
 import SEOContext from './SeoContext';
 
 interface SeoProps {
@@ -45,7 +45,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
         fullSchema = JSON.parse(seo.schema.raw);
     }
 
-    const { global } = useContext(SEOContext);
+    const { global, options } = useContext(SEOContext);
     const inLanguage = global?.schema?.inLanguage;
 
     const schema = global?.schema;
@@ -176,7 +176,17 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 .concat(meta, verification)}
             encodeSpecialCharacters={false}
         >
-            {fullSchema && <script type="application/ld+json">{JSON.stringify(fullSchema, null, null)}</script>}
+            {fullSchema && (
+                <script type="application/ld+json">
+                    {options?.schemaReplacement?.from && options?.schemaReplacement?.to
+                        ? JSON.stringify(
+                              replaceAll(fullSchema, options.schemaReplacement.from, options.schemaReplacement.to),
+                              null,
+                              null
+                          )
+                        : JSON.stringify(fullSchema, null, null)}
+                </script>
+            )}
         </Helmet>
     );
 };
