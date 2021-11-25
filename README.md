@@ -121,17 +121,17 @@ export const Layout = () => {
 Optionally you can pass options to the context via the `options` prop.
 
 ```jsx
-    const options = {
-        schemaReplacement: {
-                from: 'EXAMPLE';
-                to: 'TO_REPLACE';
-            }
-    }
+const options = {
+    schemaReplacement: {
+        from: 'EXAMPLE',
+        to: 'TO_REPLACE',
+    },
+};
 return (
-        <SEOContext.Provider value={{ global: seo, options }}>
-            <p>... your layout</p>
-        </SEOContext.Provider>
-    );
+    <SEOContext.Provider value={{ global: seo, options }}>
+        <p>... your layout</p>
+    </SEOContext.Provider>
+);
 ```
 
 Currently this only supports the `schemaReplacement` option. This will replace the `from` value with the `to` value in the JSON+LD Schema.
