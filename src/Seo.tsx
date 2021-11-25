@@ -1,7 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { getSrc } from 'gatsby-plugin-image';
-
 import SEOContext from './SeoContext';
 
 interface SeoProps {
@@ -33,10 +32,27 @@ interface IPageSchemaItems {
     dateModified?: string;
 }
 
+function replaceAll(str: string, subStr: string, newSubStr: string) {
+    if (
+        arguments.length !== 3 ||
+        typeof str !== 'string' ||
+        typeof subStr !== 'string' ||
+        typeof newSubStr !== 'string'
+    ) {
+        throw new Error('Expects three string arguments');
+    }
+    if (!subStr) {
+        return str;
+    }
+    return str.split(subStr).join(newSubStr);
+}
+
 const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
+    const { global, options } = useContext(SEOContext);
+
     const { seo } = post;
 
-    // If manually passed or try get from post data
+    // Schema If manually passed or try get from post data
     let fullSchema;
 
     if (postSchema) {
@@ -44,8 +60,18 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     } else if (seo && seo?.schema?.raw) {
         fullSchema = JSON.parse(seo.schema.raw);
     }
+    // Proccess its for display
 
-    const { global } = useContext(SEOContext);
+    if (options?.schemaReplacement?.from && options?.schemaReplacement?.to) {
+        fullSchema = replaceAll(
+            JSON.stringify(fullSchema),
+            options.schemaReplacement.from,
+            options.schemaReplacement.to
+        );
+    } else {
+        fullSchema = JSON.stringify(fullSchema);
+    }
+
     const inLanguage = global?.schema?.inLanguage;
 
     const schema = global?.schema;
@@ -176,7 +202,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
                 .concat(meta, verification)}
             encodeSpecialCharacters={false}
         >
-            {fullSchema && <script type="application/ld+json">{JSON.stringify(fullSchema, null, null)}</script>}
+            {fullSchema && <script type="application/ld+json">{fullSchema}</script>}
         </Helmet>
     );
 };

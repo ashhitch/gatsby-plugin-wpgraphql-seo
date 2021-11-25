@@ -80,8 +80,15 @@ interface IGlobal {
     schema: ISchema;
     social: ISocial;
 }
+interface IOptions {
+    schemaReplacement?: {
+        from: string;
+        to: string;
+    };
+}
 interface ContextProps {
     global: IGlobal;
+    options?: IOptions;
 }
 // Create a ui context
 const SEOContext = createContext<Partial<ContextProps>>({});
