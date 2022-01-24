@@ -111,7 +111,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
         });
     }
 
-    const metaTitle = title || seo.title;
+    const metaTitle = title || seo?.title;
     const metaDescription = seo?.metaDesc ? seo.metaDesc : '';
 
     const robotsIndex = seo?.metaRobotsNoindex === 'noindex' ? 'noindex' : 'index';
