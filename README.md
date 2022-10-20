@@ -97,6 +97,7 @@ export const Layout = () => {
                         }
                         twitter {
                             username
+                            cardType
                         }
                         wikipedia {
                             url
