@@ -1,5 +1,6 @@
-import { createContext } from 'react';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+
+import { PluginOptions as GatsbyPluginOptions } from 'gatsby';
 
 interface IPost {
     title: string;
@@ -74,23 +75,54 @@ interface ISocial {
     youTube: IScocialAccount;
 }
 
-interface IGlobal {
+export interface IGlobal {
     contentTypes: IContentTypes;
     webmaster: IWebmaster;
     schema: ISchema;
     social: ISocial;
 }
-interface IOptions {
+export interface IOptions {
     schemaReplacement?: {
         from: string;
         to: string;
     };
 }
-interface ContextProps {
-    global: IGlobal;
-    options?: IOptions;
-}
-// Create a ui context
-const SEOContext = createContext<Partial<ContextProps>>({});
 
-export default SEOContext;
+
+
+export interface SeoProps {
+    title?: String;
+    meta?: [];
+    post?: any;
+    postSchema?: IPageSchema | IPageSchema[];
+    global: IGlobal;
+    options: IOptions;
+}
+
+export interface IPageSchema {
+    '@context': string;
+    '@graph': IPageSchemaItems[];
+}
+
+export interface IPageSchemaItems {
+    '@type': any;
+    '@id': string;
+    url: string;
+    name: any;
+    isPartOf: {
+        '@id': string;
+    };
+    description: any;
+    inLanguage: String;
+    potentialAction: {
+        '@type': string;
+        target: string[];
+    }[];
+    datePublished?: string;
+    dateModified?: string;
+}
+
+
+export interface PluginOptions extends GatsbyPluginOptions {
+    query: string;
+}

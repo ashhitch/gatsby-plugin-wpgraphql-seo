@@ -1,5 +1,5 @@
 {
-    "version": "1.4.1",
+    "version": "2.0.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -10,23 +10,16 @@
         "node": ">=14.15.0"
     },
     "scripts": {
-        "start": "tsdx watch",
-        "build": "./node_modules/.bin/tsdx build",
-        "test": "./node_modules/.bin/tsdx test --passWithNoTests",
-        "lint": "./node_modules/.bin/tsdx lint",
-        "prepare": "./node_modules/.bin/tsdx build",
+        "start": "vite",
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "build:watch": "tsc && vite build --watch",
+        "preview": "vite preview",
         "size": "size-limit",
-        "analyze": "size-limit --why"
-    },
-    "peerDependencies": {
-        "gatsby": "^3.0.0 || ^4.0.0",
-        "react": ">=16",
-        "react-helmet": "^6.1.0"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "tsdx lint"
-        }
+        "analyze": "size-limit --why",
+        "@vitejs/plugin-react": "^2.1.0",
+        "semantic-release": "semantic-release",
+        "prepare": "husky install"
     },
     "name": "gatsby-plugin-wpgraphql-seo",
     "author": "Ash Hitchcock",
@@ -38,7 +31,6 @@
         "wpgraphql",
         "seo"
     ],
-    "module": "dist/gatsby-plugin-wpgraphql-seo.esm.js",
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
     },
@@ -57,11 +49,15 @@
         }
     ],
     "devDependencies": {
-        "@size-limit/preset-small-lib": "^4.6.0",
-        "@types/react": "^16.9.53",
-        "@types/react-dom": "^16.9.8",
+        "@rollup/plugin-typescript": "^9.0.2",
+        "@semantic-release/changelog": "6.0.1",
+        "@semantic-release/git": "10.0.1",
+        "@size-limit/preset-small-lib": "^8.1.0",
+        "@types/react": "^18.0.17",
+        "@types/react-dom": "^18.0.6",
         "@typescript-eslint/eslint-plugin": "^2.10.0",
         "@typescript-eslint/parser": "^2.10.0",
+        "@vitejs/plugin-react": "^2.1.0",
         "babel-eslint": "^10.0.3",
         "eslint": "^6.7.2",
         "eslint-config-airbnb": "^18.0.1",
@@ -74,18 +70,26 @@
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-react": "^7.17.0",
         "eslint-plugin-react-hooks": "^2.3.0",
-        "husky": "^4.3.0",
-        "prettier": "^1.19.1",
-        "react": "^16.14.0",
-        "react-dom": "^16.14.0",
-        "react-helmet": "^6.1.0",
-        "size-limit": "^4.6.0",
-        "tsdx": "^0.14.1",
-        "tslib": "^2.0.3",
-        "typescript": "3.7.3"
+        "husky": "8.0.1",
+        "lint-staged": ">=10",
+        "prettier": "2.7.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rollup-plugin-typescript-paths": "^1.3.0",
+        "semantic-release": "19.0.5",
+        "size-limit": "^8.1.0",
+        "tslib": "^2.4.0",
+        "typescript": "4.8.4",
+        "gatsby-plugin-image": "^2.24.0",
+        "gatsby": ">= 4.19.0",
+        "vite": "^3.1.0"
     },
-    "dependencies": {
-        "@types/react-helmet": "^6.1.0",
-        "gatsby-plugin-image": "^1.5.0"
+    "peerDependencies": {
+        "gatsby-plugin-image": ">= 2.24.0",
+        "gatsby": ">= 4.19.0",
+        "react": ">=17"
+    },
+    "lint-staged": {
+        "*.{js,css,md,json,.releaserc}": "prettier --write"
     }
 }

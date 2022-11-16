@@ -1,36 +1,6 @@
-import React, { FC, useContext } from 'react';
-import { Helmet } from 'react-helmet';
 import { getSrc } from 'gatsby-plugin-image';
-import SEOContext from './SeoContext';
-
-interface SeoProps {
-    title?: String;
-    meta?: [];
-    post?: any;
-    postSchema?: IPageSchema | IPageSchema[];
-}
-
-interface IPageSchema {
-    '@context': string;
-    '@graph': IPageSchemaItems[];
-}
-interface IPageSchemaItems {
-    '@type': any;
-    '@id': string;
-    url: string;
-    name: any;
-    isPartOf: {
-        '@id': string;
-    };
-    description: any;
-    inLanguage: String;
-    potentialAction: {
-        '@type': string;
-        target: string[];
-    }[];
-    datePublished?: string;
-    dateModified?: string;
-}
+import React, { FC, PropsWithChildren } from 'react';
+import { SeoProps } from './type';
 
 function replaceAll(str: string, subStr: string, newSubStr: string) {
     if (
@@ -47,9 +17,15 @@ function replaceAll(str: string, subStr: string, newSubStr: string) {
     return str.split(subStr).join(newSubStr);
 }
 
-const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
-    const { global, options } = useContext(SEOContext);
-
+const SEO: FC<PropsWithChildren<SeoProps>> = ({
+    post = {},
+    meta = [],
+    title,
+    postSchema,
+    global,
+    options,
+    children,
+}) => {
     const { seo } = post;
 
     // Schema If manually passed or try get from post data
@@ -72,7 +48,7 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
         fullSchema = JSON.stringify(fullSchema);
     }
 
-    const inLanguage = global?.schema?.inLanguage;
+    // const inLanguage = global?.schema?.inLanguage;
 
     const schema = global?.schema;
     const webmaster = global?.webmaster;
@@ -117,93 +93,104 @@ const SEO: FC<SeoProps> = ({ post = {}, meta = [], title, postSchema }) => {
     const robotsIndex = seo?.metaRobotsNoindex === 'noindex' ? 'noindex' : 'index';
     const robotsFollow = seo?.metaRobotsNofollow === 'nofollow' ? 'nofollow' : 'follow';
 
-    const getReadingTime = time => (time === 1 ? '1 minute' : `${time} minutes`);
+    const getReadingTime = (time: number) => (time === 1 ? '1 minute' : `${time} minutes`);
 
-    const ogImage = getSrc(seo?.opengraphImage?.localFile);
-    const twitterImage = getSrc(seo?.twitterImage?.localFile);
+    const ogImage = getSrc(seo?.opengraphImage);
+    const twitterImage = getSrc(seo?.twitterImage);
+
+    const metaItems = [
+        {
+            name: `robots`,
+            content: `max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${robotsIndex}, ${robotsFollow}`,
+        },
+        {
+            name: `description`,
+            content: metaDescription,
+        },
+        {
+            property: `og:site_name`,
+            content: schema?.companyName,
+        },
+        {
+            property: `og:title`,
+            content: seo?.opengraphTitle || metaTitle,
+        },
+        {
+            property: `og:description`,
+            content: seo?.opengraphDescription,
+        },
+        {
+            property: `og:locale`,
+            content: seo?.schema?.inLanguage ? seo.schema.inLanguage.replace('-', '_') : null,
+        },
+        {
+            property: `og:type`,
+            content: `website`,
+        },
+        {
+            property: 'og:image',
+            content: ogImage || seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl,
+        },
+        {
+            property: 'og:image:alt',
+            content: seo?.opengraphImage?.altText || social?.facebook?.defaultImage?.altText,
+        },
+        {
+            name: `twitter:card`,
+            content: social?.twitter.cardType,
+        },
+        {
+            name: `twitter:creator`,
+            content: social?.twitter.username,
+        },
+        {
+            name: `twitter:title`,
+            content: seo?.twitterTitle || metaTitle,
+        },
+        {
+            name: `twitter:description`,
+            content: seo?.twitterDescription || metaDescription,
+        },
+        {
+            name: 'twitter:image',
+            content: twitterImage || seo?.twitterImage?.sourceUrl,
+        },
+        {
+            name: 'twitter:image:alt',
+            content: seo?.twitterImage?.altText,
+        },
+        {
+            name: 'twitter:label1',
+            content: seo?.readingTime ? 'Estimated reading time' : null,
+        },
+        {
+            name: 'twitter:data1',
+            content: seo?.readingTime ? getReadingTime(+seo.readingTime) : '',
+        },
+    ]
+        .filter((m) => !!m.content)
+        .concat(meta, verification);
 
     return (
-        <Helmet
-            htmlAttributes={{
-                lang: inLanguage,
-            }}
-            title={metaTitle}
-            meta={[
-                {
-                    name: `robots`,
-                    content: `max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${robotsIndex}, ${robotsFollow}`,
-                },
-                {
-                    name: `description`,
-                    content: metaDescription,
-                },
-                {
-                    property: `og:site_name`,
-                    content: schema?.companyName,
-                },
-                {
-                    property: `og:title`,
-                    content: seo?.opengraphTitle || metaTitle,
-                },
-                {
-                    property: `og:description`,
-                    content: seo?.opengraphDescription,
-                },
-                {
-                    property: `og:locale`,
-                    content: seo?.schema?.inLanguage ? seo.schema.inLanguage.replace('-', '_') : null,
-                },
-                {
-                    property: `og:type`,
-                    content: `website`,
-                },
-                {
-                    property: 'og:image',
-                    content: ogImage || seo?.opengraphImage?.sourceUrl || social?.facebook?.defaultImage?.mediaItemUrl,
-                },
-                {
-                    property: 'og:image:alt',
-                    content: seo?.opengraphImage?.altText || social?.facebook?.defaultImage?.altText,
-                },
-                {
-                    name: `twitter:card`,
-                    content: social?.twitter.cardType,
-                },
-                {
-                    name: `twitter:creator`,
-                    content: social?.twitter.username,
-                },
-                {
-                    name: `twitter:title`,
-                    content: seo?.twitterTitle || metaTitle,
-                },
-                {
-                    name: `twitter:description`,
-                    content: seo?.twitterDescription || metaDescription,
-                },
-                {
-                    name: 'twitter:image',
-                    content: twitterImage || seo?.twitterImage?.sourceUrl,
-                },
-                {
-                    name: 'twitter:image:alt',
-                    content: seo?.twitterImage?.altText,
-                },
-                {
-                    name: 'twitter:label1',
-                    content: seo?.readingTime ? 'Estimated reading time' : null,
-                },
-                {
-                    name: 'twitter:data1',
-                    content: seo?.readingTime ? getReadingTime(+seo.readingTime) : '',
-                },
-            ]
-                .filter(m => !!m.content)
-                .concat(meta, verification)}
-            encodeSpecialCharacters={false}
-        >
-            {fullSchema && <script type="application/ld+json">{fullSchema}</script>}
-        </Helmet>
+        <>
+            <title>{metaTitle}</title>
+            {metaItems.map((metaItem, index) => (
+                <meta
+                    id={`yoast-${metaItem?.name}`}
+                    name={metaItem?.name}
+                    property={metaItem?.property}
+                    content={metaItem?.content as string}
+                    key={index}
+                />
+            ))}
+            {seo?.canonical && <link rel="canonical" href={seo.canonical} />}
+            {fullSchema && (
+                <script type="application/ld+json" id="yoast-seo-schema">
+                    {JSON.stringify(fullSchema, undefined, process.env.NODE_ENV === 'development' ? 2 : 0)}
+                </script>
+            )}
+            {children}
+        </>
     );
 };
 
