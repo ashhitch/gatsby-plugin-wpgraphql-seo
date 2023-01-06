@@ -15,8 +15,12 @@
         "clean": "gatsby clean"
     },
     "dependencies": {
-        "gatsby-plugin-wpgraphql-seo": "*",
+        "dotenv": "^16.0.3",
         "gatsby": "4.24.7",
+        "gatsby-plugin-sharp": "^5.3.2",
+        "gatsby-plugin-wpgraphql-seo": "*",
+        "gatsby-source-wordpress": "^7.3.2",
+        "gatsby-transformer-sharp": "^5.3.1",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }
