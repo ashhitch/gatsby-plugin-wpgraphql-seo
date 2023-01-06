@@ -20,11 +20,29 @@ or
 npm install gatsby-plugin-wpgraphql-seo
 ```
 
+Also, if you haven't already, install [gatsby-plugin-react-helmet](https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/) and [react-helmet](https://www.npmjs.com/package/react-helmet)
+
+```
+yarn add gatsby-plugin-react-helmet react-helmet
+```
+
+or
+
+```
+npm install gatsby-plugin-react-helmet react-helmet
+```
+
 ## Find this useful?
 
 <a href="https://www.buymeacoffee.com/hafowuvo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 40px !important;width: auto !important;" ></a>
 
 ### Setup Gatsby
+
+Add `gatsby-plugin-react-helmet` to your plugins in gatsby-config, alongside any others you alrady have:
+
+```js
+plugins: ['gatsby-plugin-react-helmet']
+```
 
 In your sites layout setup the context provider to pass the component your general site settings.
 
