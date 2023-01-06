@@ -4973,11 +4973,6 @@ jsx-ast-utils@^2.4.1:
     array-includes "^3.1.1"
     object.assign "^4.1.1"
 
-just-replace-all@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/just-replace-all/-/just-replace-all-1.0.0.tgz#9e7c986ef6b1c7ab5c2622fa489dc3b7faa6e9cf"
-  integrity sha512-5MXg2hnrLXB1J0NSigas4DxUwK7gs6jEHFt5F+dPTYFZcgZipexcjR25FKa14FPlxHMDG2/FIfEoP72tPqrgqA==
-
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
