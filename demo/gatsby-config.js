@@ -1,15 +1,15 @@
+require('dotenv').config({
+    path: `.env`,
+});
+
 module.exports = {
     plugins: [
+        `gatsby-plugin-wpgraphql-seo`,
         {
             resolve: `gatsby-source-wordpress`,
             options: {
-                /*
-                 * The full URL of the WordPress site's GraphQL API.
-                 * Example : 'https://www.example-site.com/graphql'
-                 */
-                url: `https://api.wpgraphqlseo.com/graphql`,
+                url: process.env.GATSBY_WORDPRESS_API_URL,
             },
         },
-        'gatsby-plugin-wpgraphql-seo',
     ],
 };
