@@ -1,3 +1,4 @@
+import { useStaticQuery, graphql } from 'gatsby';
 import { getSrc } from 'gatsby-plugin-image';
 import React, { FC, PropsWithChildren } from 'react';
 import { SeoProps } from './type';
@@ -17,15 +18,83 @@ function replaceAll(str: string, subStr: string, newSubStr: string) {
     return str.split(subStr).join(newSubStr);
 }
 
-const SEO: FC<PropsWithChildren<SeoProps>> = ({
-    post = {},
-    meta = [],
-    title,
-    postSchema,
-    global,
-    options,
-    children,
-}) => {
+const SEO: FC<PropsWithChildren<SeoProps>> = ({ post = {}, meta = [], title, postSchema, options, children }) => {
+    const global = useStaticQuery(graphql`
+        query GetSeoConfig {
+            seo {
+                webmaster {
+                    googleVerify
+                    yandexVerify
+                    msVerify
+                    baiduVerify
+                }
+                schema {
+                    siteName
+                    wordpressSiteName
+                    siteUrl
+                    inLanguage
+                    companyName
+                    companyOrPerson
+                    companyLogo {
+                        mediaItemUrl
+                    }
+                    logo {
+                        mediaItemUrl
+                    }
+                    personLogo {
+                        mediaItemUrl
+                    }
+                }
+                social {
+                    facebook {
+                        url
+                        defaultImage {
+                            mediaItemUrl
+                        }
+                    }
+                    instagram {
+                        url
+                    }
+                    linkedIn {
+                        url
+                    }
+                    mySpace {
+                        url
+                    }
+                    pinterest {
+                        url
+                        metaTag
+                    }
+                    twitter {
+                        cardType
+                        username
+                    }
+                    wikipedia {
+                        url
+                    }
+                    youTube {
+                        url
+                    }
+                }
+                openGraph {
+                    frontPage {
+                        title
+                        description
+                        image {
+                            altText
+                            sourceUrl
+                            mediaItemUrl
+                        }
+                    }
+                    defaultImage {
+                        altText
+                        sourceUrl
+                        mediaItemUrl
+                    }
+                }
+            }
+        }
+    `);
     const { seo } = post;
 
     // Schema If manually passed or try get from post data
